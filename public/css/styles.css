@@ -195,7 +195,7 @@ input.checkbox:checked+.task li:after {
 }
 
 .todo:hover .trash-icon {
-    opacity: 0.35;
+    opacity: 0.25;
     visibility: visible;
 }
 
@@ -204,7 +204,7 @@ input.checkbox:checked+.task li:after {
 }
 
 .todo .trash-icon:active {
-    opacity: 0.35;
+    opacity: 0.25;
 }
 
 .delete-btn {

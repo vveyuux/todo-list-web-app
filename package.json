@@ -1,6 +1,6 @@
 {
   "name": "todolists",
-  "type": "commonjs",
+  "type": "module",
   "version": "1.0.0",
   "description": "This todo-list web app project.",
   "main": "app.js",
