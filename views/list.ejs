@@ -10,13 +10,13 @@
     <script src="https://kit.fontawesome.com/1e6ac674d0.js" crossorigin="anonymous"></script>
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-    <link rel="icon" href="images/checklist.png">
-    <meta name="theme-color" content="#712cf9">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+    <link rel="manifest" href="images/icons/site.webmanifest">
+    <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,17 @@
                 Tasks
             </p>
         </div>
+        <!-- List menu -->
+
+        <div class="list-container">
+            <% lists.forEach((listName)=>{%>
+                <form action="/<%=listName%>" method="post">
+                    <button class="list-btn" type="submit" name="listName" value="<%=listName%>">
+                        #<%=listName%>
+                    </button>
+                </form>
+                <%});%>
+        </div>
 
         <ul class="todo-list">
             <% todo.forEach((item)=> {%>
@@ -57,12 +68,13 @@
                     <input class="checkbox" type="checkbox">
                     <div class="task">
                         <li>
-                            <%=item%>
+                            <%=item.name%>
                         </li>
                     </div>
-                    <form action="/" method="post">
+                    <form action="/delete" method="post">
                         <div class="trash-icon">
-                            <button class="delete-btn" type=" submit" name="delete" value="<%=item%>">
+                            <input type="hidden" name=listName value="<%=listName%>">
+                            <button class="delete-btn" type=" submit" name="delete" value="<%=item._id%>">
                                 <i class="fa-solid fa-trash-can fa-lg"></i>
                             </button>
                         </div>
@@ -70,9 +82,9 @@
                 </div>
                 <%});%>
         </ul>
-        <form action="/" method="post">
+        <form class="add-task-form" action="/" method="post">
             <input class="newItem" type="text" name="newItem" placeholder="Add Task" autocomplete="off">
-            <button class="add-item" type="submit" name="lists" value="<%=lists%>">+</button>
+            <button class="add-item" type="submit" name="lists" value="<%=listName%>">+</button>
         </form>
     </div>
 
