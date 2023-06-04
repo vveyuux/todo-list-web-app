@@ -7,7 +7,7 @@ body {
     height: 100vh;
     background-color: #393E46;
     color: #F7F7F7;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     /* can also be whatever container */
     display: -webkit-flex;
@@ -112,6 +112,8 @@ body {
     /* width: 75%; */
     /* border: rgb(125, 110, 131, 0.5) inset 5px;
     border-radius: 5px; */
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
     text-align: left;
     list-style-type: none;
@@ -157,7 +159,7 @@ body {
 }
 
 .checkbox:checked+.task li {
-    text-decoration: line-through #F45050;
+    text-decoration: line-through #F45050 2px;
 }
 
 .task {
@@ -202,7 +204,7 @@ body {
 }
 
 .todo .trash-icon {
-    top: -2.5px;
+    top: -1.5px;
     position: relative;
     opacity: 0;
     visibility: hidden;
@@ -236,6 +238,7 @@ body {
 }
 
 .list-container {
+    font-family: 'Nunito', sans-serif;
     margin-top: 0.5rem;
 }
 
@@ -245,7 +248,7 @@ body {
 
 .list-btn {
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0.5rem;
     color: rgb(125, 110, 131, 0.75);
     background-color: #EEEEEE;
@@ -272,7 +275,7 @@ body {
         height: 100vh;
         background-color: #393E46;
         color: #F7F7F7;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Nunito', sans-serif;
         margin: auto;
         /* can also be whatever container */
         display: -webkit-inline-box;
@@ -280,6 +283,7 @@ body {
     }
 
     .box input.newItem {
-        width: 75%;
+
+        width: 216.6px;
     }
 }
