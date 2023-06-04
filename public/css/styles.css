@@ -90,24 +90,6 @@ body {
     border-radius: 10px;
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgb(125, 110, 131, 0.3);
-    border-radius: 5px;
-}
-
-::-moz-scrollbar {
-    width: 5px;
-}
-
-::-moz-scrollbar-thumb {
-    background-color: rgb(125, 110, 131, 0.3);
-    border-radius: 5px;
-}
-
 .todo-list {
     /* width: 75%; */
     /* border: rgb(125, 110, 131, 0.5) inset 5px;
@@ -122,6 +104,36 @@ body {
     margin: 0;
     overflow: auto;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(125, 110, 131, 0.3);
+}
+
+/* Fire Fox */
+.todo-list:-webkit-scrollbar {
+    width: 5px;
+}
+
+.todo-list:-webkit-scrollbar-thumb {
+    background-color: rgb(125, 110, 131, 0.3);
+    border-radius: 5px;
+}
+
+/* Webkit browsers */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(125, 110, 131, 0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .todo {
