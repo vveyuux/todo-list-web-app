@@ -1,12 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
+import { List, Item, cloudConnect, closeConnection } from "./dbconfig.js";
+
 import { getDate, getDay, getMonth } from "./date.js";
 
 import path from "path";
 import { fileURLToPath } from "url";
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+cloudConnect();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,19 +25,6 @@ let day = getDate();
 let weekday = getDay();
 let month = getMonth();
 
-const itemsSchema = {
-  name: String,
-};
-
-const listsSchema = {
-  name: String,
-  items: [itemsSchema],
-};
-
-const List = mongoose.model("list", listsSchema);
-
-const Item = mongoose.model("item", itemsSchema);
-
 const item1 = new Item({
   name: "Welcome to your todolists!",
 });
@@ -53,9 +41,9 @@ const defaultItems = [item1, item2, item3];
 
 let lists = ["Today", "Home", "Work"];
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  console.log("Log in!!");
   let taskNum = defaultItems.length;
-
   Item.find({})
     .then(async function (items) {
       if (items.length === 0) {
@@ -68,15 +56,7 @@ app.get("/", (req, res) => {
           });
         res.redirect("/today");
       } else {
-        res.render("list", {
-          weekday: "Today",
-          day: weekday + " " + day,
-          month: month,
-          todo: items,
-          taskNum: taskNum,
-          lists: lists,
-          listName: lists[0],
-        });
+        res.redirect("/today");
         console.log("Parse todolist items in templates succesfully");
       }
     })
@@ -86,6 +66,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:listName", async (req, res) => {
+  console.log("Log in!!");
   let listName = req.params.listName;
   listName = listName.toLowerCase();
   await List.findOne({ name: listName })
@@ -122,8 +103,10 @@ app.get("/:listName", async (req, res) => {
 });
 
 app.post("/", async (req, res) => {
+  console.log("Log in!!");
   let listName = req.body.listName;
   let item = req.body.newItem;
+  console.log(req.body);
 
   if (item != "") {
     const newItem = new Item({
@@ -139,12 +122,14 @@ app.post("/", async (req, res) => {
         res.redirect("/" + listName);
       })
       .catch(function (err) {
+        console.log("Something went wrong with creating new task!!");
         console.log(err);
       });
   }
 });
 
 app.post("/delete", async (req, res) => {
+  console.log("Log in!!");
   let delID = req.body.delete;
   let listName = req.body.listName;
   console.log(req.body);
@@ -166,6 +151,7 @@ app.post("/delete", async (req, res) => {
 });
 
 app.post("/:listName", async (req, res) => {
+  console.log("List begin");
   const listName = req.params.listName.toLowerCase();
   res.redirect("/" + listName);
 });

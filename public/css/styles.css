@@ -46,6 +46,7 @@ body {
 }
 
 .box button.add-item {
+    cursor: pointer;
     height: 2rem;
     width: 2rem;
     border-radius: 25%;
@@ -141,6 +142,7 @@ body {
 }
 
 .checkbox {
+    height: 17px;
     margin-right: 10px;
     accent-color: #4B8673;
     cursor: pointer;
@@ -149,28 +151,20 @@ body {
 .checkbox+.task li {
     position: relative;
     overflow: hidden;
+    font-size: medium;
+    text-decoration: none;
+    transition: text-decoration 0.25s ease-out;
 }
 
-.checkbox+.task li::after {
-    content: "";
-    position: absolute;
-    background-color: #F45050;
-    width: 0;
-    height: 3px;
-    left: 0;
-    top: 50%;
-    transition: width 0.25s ease-out;
+.checkbox:checked+.task li {
+    text-decoration: line-through #F45050;
 }
 
 .task {
-    width: 80%;
+    width: 252.45px;
+
 }
 
-.task li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
 .todo {
     position: relative;
@@ -181,7 +175,7 @@ body {
     position: absolute;
     opacity: 0;
     background-color: #988b9c;
-    width: 95%;
+    width: 100%;
     height: 2px;
     left: 0;
     top: 120%;
@@ -190,10 +184,6 @@ body {
 
 .todo:hover::before {
     opacity: 0.25;
-}
-
-input.checkbox:checked+.task li:after {
-    width: 100%;
 }
 
 #day {
@@ -212,8 +202,8 @@ input.checkbox:checked+.task li:after {
 }
 
 .todo .trash-icon {
-    position: absolute;
-    right: 10px;
+    top: -2.5px;
+    position: relative;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0.25s, opacity 0.25s ease-out;
@@ -234,6 +224,7 @@ input.checkbox:checked+.task li:after {
 
 .delete-btn {
     border: none;
+    cursor: pointer;
 }
 
 .add-task-form {
@@ -253,22 +244,25 @@ input.checkbox:checked+.task li:after {
 }
 
 .list-btn {
+    cursor: pointer;
     font-weight: 700;
     padding: 0.5rem;
-    color: #7D6E83;
+    color: rgb(125, 110, 131, 0.75);
     background-color: #EEEEEE;
     border: rgb(125, 110, 131, 0.25) outset 3px;
     border-radius: 5px;
     text-align: center;
-    transition: border 0.25s, background-color 0.25s ease-out;
+    transition: border 0.25s, background-color 0.25s, color 0.25s ease-out;
 }
 
 .list-btn:hover {
+    color: rgb(125, 110, 131, 1);
     border: rgb(125, 110, 131, 0.75) inset 3px;
     background-color: #e2e2e2;
 }
 
 .list-btn:active {
+    color: rgb(125, 110, 131, 0.75);
     border: rgb(125, 110, 131, 0.25) outset 3px;
     background-color: #EEEEEE;
 }
@@ -283,5 +277,9 @@ input.checkbox:checked+.task li:after {
         /* can also be whatever container */
         display: -webkit-inline-box;
         display: inline-block;
+    }
+
+    .box input.newItem {
+        width: 75%;
     }
 }
